@@ -49,10 +49,10 @@
                         <div class="topbar-menu right-menu">
                             <ul>
                                 <li class="menu-item">
-                                    <a title="Register or Login" href="login.html">Login</a>
+                                    <a title="Register or Login" href="{{ route('login') }}">Login</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a title="Register or Login" href="register.html">Register</a>
+                                    <a title="Register or Login" href="{{ route('register') }}">Register</a>
                                 </li>
                                 <li class="menu-item lang-menu menu-item-has-children parent">
                                     <a title="English" href="#"><span class="img label-before"><img
@@ -101,6 +101,41 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Login --}}
+                @if (Route::has('login'))
+                    @auth
+                        @if (Auth::user()->utype == 'ADM')
+                            {{-- admin --}}
+                            <li class="menu-item menu-item-has-children parent">
+                                <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i
+                                        class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="submenu-item">
+                                    <a title="Dashboard" href="">Dashboard</a>
+                                </ul>
+                            </li>
+                        @else
+                            {{-- user --}}
+                            <li class="menu-item menu-item-has-children parent">
+                                <a title="My Account" href="#">My Account ({{ Auth::user()->name }})<i
+                                        class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="submenu-item">
+                                    <a title="Dashboard" href="">Dashboard</a>
+                                </ul>
+                            </li>
+                        @endif
+
+                    @endauth
+                @else
+                    <li class="menu-item">
+                        <a title="Login" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="menu-item">
+                        <a title="Register" href="{{ route('register') }}">Register</a>
+                    </li>
+                @endif
+
+                {{-- Login --}}
 
                 <div class="container">
                     <div class="mid-section main-info-area">

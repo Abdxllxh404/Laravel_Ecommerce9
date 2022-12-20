@@ -20,9 +20,27 @@ use App\Http\Livewire\CheckoutComponent;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
 // });
+
+
+
+// For User or Customer
+Route::middleware(['auth:sanctum','verified'])->group(function(){
+
+});
+
+// For Admin
+Route::middleware(['auth:sanctum','verified'])->group(function(){
+    
+});
 
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/about-us',AboutUsComponent::class)->name('aboutus');
@@ -31,12 +49,6 @@ Route::get('/cart',CartComponent::class)->name('cart');
 Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 Route::get('/shop',ShopComponent::class)->name('shop');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
+
+
