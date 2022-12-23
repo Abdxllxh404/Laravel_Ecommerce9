@@ -65,7 +65,7 @@
                                                             href="{{ route('admin.dashboard') }}">Dashboard</a>
                                                     </li>
                                                     <li class="menu-item">
-                                                        <a title="Profile" href="#">Profile</a>
+                                                        <a title="Profile" href="{{ route('user/profile') }}">Profile</a>
                                                     </li>
                                                     <li class="menu-item">
                                                         <a title="Setting" href="#">Setting</a>
@@ -84,10 +84,12 @@
                                             </li>
                                         @else
                                             {{-- user --}}
-                                            <li class="menu-item menu-item-has-children parent">
-                                                <a title="Dashboard" href="{{ route('user.dashboard') }}">My Account
-                                                    ({{ Auth::user()->name }})<i class="fa fa-angle-down"
-                                                        aria-hidden="true"></i></a>
+                                            <li class="menu-item menu-item-has-children parent"
+                                                style="float: right>
+                                                <a title="Dashboard"
+                                                href="{{ route('user.dashboard') }}">My Account
+                                                ({{ Auth::user()->name }})<i class="fa fa-angle-down"
+                                                    aria-hidden="true"></i></a>
                                                 <ul class="submenu curency">
                                                     <li class="menu-item">
                                                         <a title="Profile" href="#">Profile</a>
@@ -95,6 +97,16 @@
                                                     <li class="menu-item">
                                                         <a title="Setting" href="#">Setting</a>
                                                     </li>
+                                                    {{-- Logout --}}
+                                                    <li class="menu-item">
+                                                        <a title="Logout"
+                                                            onclick="event.preventDefault(); document.getElementById('logout').submit();"
+                                                            href="{{ route('logout') }}">Logout</a>
+                                                    </li>
+                                                    <form id="logout" method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                    </form>
+                                                    {{-- Logout --}}
                                                 </ul>
                                             </li>
                                         @endif
@@ -331,18 +343,9 @@
         </div>
     </header>
 
-    {{-- Section --}}
+    {{-- Section main-content --}}
     @yield('main-content')
-    {{-- Section --}}
-    {{-- {{ $slot }} --}}
-
-
-
-
-
-
-
-
+    {{-- Section main-content --}}
 
     <footer id="footer">
         <div class="wrap-footer-content footer-style-1">
