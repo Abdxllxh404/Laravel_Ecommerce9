@@ -62,7 +62,7 @@
                                                 <ul class="submenu curency">
                                                     <li class="menu-item">
                                                         <a title="Dashboard"
-                                                            href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                                            href="{{ route('admin.dashboard') }}">Profile</a>
                                                     </li>
                                                     <li class="menu-item">
                                                         <a title="Profile" href="{{ route('user/profile') }}">Profile</a>
@@ -74,23 +74,26 @@
                                                     <li class="menu-item">
                                                         <a title="Logout"
                                                             onclick="event.preventDefault(); document.getElementById('logout').submit();"
-                                                            href="{{ route('logout') }}">Logout</a>
+                                                            {{-- Js เข้าถึง Form และ Submit --}} href="{{ route('logout') }}">Logout</a>
                                                     </li>
                                                     <form id="logout" method="POST" action="{{ route('logout') }}">
                                                         @csrf
+                                                        {{-- logout ต้อง logout เป็นแบบ Form medthod POST เท่านั้นจึงจะสามารถทำงานได้ --}}
                                                     </form>
                                                     {{-- Logout --}}
                                                 </ul>
                                             </li>
                                         @else
                                             {{-- user --}}
-                                            <li class="menu-item menu-item-has-children parent"
-                                                style="float: right>
-                                                <a title="Dashboard"
-                                                href="{{ route('user.dashboard') }}">My Account
-                                                ({{ Auth::user()->name }})<i class="fa fa-angle-down"
-                                                    aria-hidden="true"></i></a>
+                                            <li class="menu-item menu-item-has-children parent" style="float: right">
+                                                <a title="Dashboard" href="#">My Account
+                                                    ({{ Auth::user()->name }})
+                                                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                 <ul class="submenu curency">
+                                                    <li class="menu-item">
+                                                        <a title="Dashboard"
+                                                            href="{{ route('user.dashboard') }}">Dashboard</a>
+                                                    </li>
                                                     <li class="menu-item">
                                                         <a title="Profile" href="#">Profile</a>
                                                     </li>
