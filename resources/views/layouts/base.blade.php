@@ -70,14 +70,14 @@
                                                     <li class="menu-item">
                                                         <a title="Setting" href="#">Setting</a>
                                                     </li>
+                                                    {{-- Logout --}}
                                                     <li class="menu-item">
-                                                        <a title="Logout" {{-- onclick="event.preventDefault(); document.getElementByID('logout-form').submit();" --}}
+                                                        <a title="Logout"
+                                                            onclick="event.preventDefault(); document.getElementById('logout').submit();"
                                                             href="{{ route('logout') }}">Logout</a>
                                                     </li>
-                                                    {{-- Logout --}}
-                                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                                    <form id="logout" method="POST" action="{{ route('logout') }}">
                                                         @csrf
-
                                                     </form>
                                                     {{-- Logout --}}
                                                 </ul>
@@ -95,16 +95,6 @@
                                                     <li class="menu-item">
                                                         <a title="Setting" href="#">Setting</a>
                                                     </li>
-                                                    {{-- Logout --}}
-                                                    <form method="POST" action="{{ route('logout') }}">
-                                                        @csrf
-                                                        <li class="menu-item">
-                                                            <a title="Logout"
-                                                                onclick="event.preventDefault(); .closet.submit('form');"
-                                                                href="{{ route('logout') }}">Logout</a>
-                                                        </li>
-                                                    </form>
-                                                    {{-- Logout --}}
                                                 </ul>
                                             </li>
                                         @endif

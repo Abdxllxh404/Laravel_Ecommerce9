@@ -21,16 +21,15 @@ use App\Http\Livewire\UserDashboardComponent;
 */
 
 // TODO: Live wire defualt route
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 // For Admin
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
