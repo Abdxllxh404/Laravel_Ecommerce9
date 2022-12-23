@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <title>Home</title> --}}
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
     <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext"
@@ -21,6 +24,10 @@
     <link rel="stylesheet" type="text/css" href={{ asset('assets/css/style.css ') }} />
     <link rel="stylesheet" type="text/css" href={{ asset('assets/css/color-01.css') }} />
     @yield('css')
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @yield('js-asset')
 </head>
 @livewireStyles
 

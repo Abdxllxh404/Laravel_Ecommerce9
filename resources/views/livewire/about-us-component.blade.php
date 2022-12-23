@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base');
 @section('main-content')
     <!--main area-->
     <main id="main" class="main-site">
