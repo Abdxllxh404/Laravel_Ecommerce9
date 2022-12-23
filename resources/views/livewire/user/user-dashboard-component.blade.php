@@ -1,3 +1,6 @@
-<div>
-    {{-- Do your work, then step back. --}}
-</div>
+@extends('layouts.base')
+@section('main-content')
+    <div>
+        <h1>USER Dashboard</h1>
+    </div>
+@endsection

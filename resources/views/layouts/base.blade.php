@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href={{ asset('assets/css/chosen.min.css') }} />
     <link rel="stylesheet" type="text/css" href={{ asset('assets/css/style.css ') }} />
     <link rel="stylesheet" type="text/css" href={{ asset('assets/css/color-01.css') }} />
+    @yield('css')
 </head>
 @livewireStyles
 
@@ -55,10 +56,14 @@
                                         @if (Auth::user()->utype == 'ADM')
                                             {{-- admin --}}
                                             <li class="menu-item menu-item-has-children parent" style="float: right">
-                                                <a title="Dollar (USD)" href="#">My Account
+                                                <a title="Dashboard" href="#">My Account
                                                     ({{ Auth::user()->name }})
                                                     <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                 <ul class="submenu curency">
+                                                    <li class="menu-item">
+                                                        <a title="Dashboard"
+                                                            href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                                    </li>
                                                     <li class="menu-item">
                                                         <a title="Profile" href="#">Profile</a>
                                                     </li>
@@ -66,14 +71,21 @@
                                                         <a title="Setting" href="#">Setting</a>
                                                     </li>
                                                     <li class="menu-item">
-                                                        <a title="Setting" href="#">Logout</a>
+                                                        <a title="Logout" {{-- onclick="event.preventDefault(); document.getElementByID('logout-form').submit();" --}}
+                                                            href="{{ route('logout') }}">Logout</a>
                                                     </li>
+                                                    {{-- Logout --}}
+                                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+
+                                                    </form>
+                                                    {{-- Logout --}}
                                                 </ul>
                                             </li>
                                         @else
                                             {{-- user --}}
                                             <li class="menu-item menu-item-has-children parent">
-                                                <a title="Dollar (USD)" href="#">My Account
+                                                <a title="Dashboard" href="{{ route('user.dashboard') }}">My Account
                                                     ({{ Auth::user()->name }})<i class="fa fa-angle-down"
                                                         aria-hidden="true"></i></a>
                                                 <ul class="submenu curency">
@@ -83,9 +95,16 @@
                                                     <li class="menu-item">
                                                         <a title="Setting" href="#">Setting</a>
                                                     </li>
-                                                    <li class="menu-item">
-                                                        <a title="Setting" href="#">Logout</a>
-                                                    </li>
+                                                    {{-- Logout --}}
+                                                    <form method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                        <li class="menu-item">
+                                                            <a title="Logout"
+                                                                onclick="event.preventDefault(); .closet.submit('form');"
+                                                                href="{{ route('logout') }}">Logout</a>
+                                                        </li>
+                                                    </form>
+                                                    {{-- Logout --}}
                                                 </ul>
                                             </li>
                                         @endif
@@ -321,7 +340,20 @@
             </div>
         </div>
     </header>
-    {{ $slot }}
+
+    {{-- Section --}}
+    @yield('main-content')
+    {{-- Section --}}
+    {{-- {{ $slot }} --}}
+
+
+
+
+
+
+
+
+
     <footer id="footer">
         <div class="wrap-footer-content footer-style-1">
             <div class="wrap-function-info">
@@ -737,7 +769,7 @@
             </div>
         </div>
     </footer>
-
+    @yield('js')
     <script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js?ver=1.12.4') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

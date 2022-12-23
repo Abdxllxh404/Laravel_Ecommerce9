@@ -1,3 +1,6 @@
-<div>
-    <h1>Admin Dashboads</h1>
-</div>
+@extends('layouts.base');
+@section('main-content')
+    <div class="">
+        <h1>Admin pages</h1>
+    </div>
+@endsection
