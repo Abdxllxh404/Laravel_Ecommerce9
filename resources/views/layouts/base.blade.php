@@ -115,6 +115,7 @@
                                                     </li>
                                                     <form id="logout" method="POST" action="{{ route('logout') }}">
                                                         @csrf
+                                                        {{-- logout have to method POST Form only  --}}
                                                     </form>
                                                     {{-- Logout --}}
                                                 </ul>
